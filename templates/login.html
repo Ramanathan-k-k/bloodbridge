@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeLink - Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Login to LifeLink</h2>
+    <form action="{{ url_for('login') }}" method="POST">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      
+      <!-- Role Dropdown -->
+      <select name="role" id="role" required>
+        <option value="">Select Role</option>
+        <option value="donor">Donor</option>
+        <option value="admin">Admin</option>
+        <option value="manager">Manager</option>
+      </select>
+      
+      <button type="submit">Login</button>
+    </form>
+    <p style="text-align: center; margin-top: 20px;">
+      Forgot password? <a href="{{ url_for('reset_password') }}">Reset here</a>.
+    </p>
+    <p style="text-align: center;">
+      New to LifeLink? <a href="{{ url_for('register') }}">Create an account</a>.
+    </p>
+  </div>
+</body>
+</html>

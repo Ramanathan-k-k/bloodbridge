@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scheduling Status</title>
+  <style>
+    .status-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .message-box {
+      padding: 20px;
+      border: 2px solid #4CAF50;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      width: 80%;       /* Sets width to 80% of the container */
+      max-width: 600px; /* Limits the maximum width to 600px for larger screens */
+      margin: auto;     /* Centers the box horizontally within the container */
+    }
+  </style>
+  <script>
+    // Set the initial countdown time in seconds
+    let countdownTime = 5;
+
+    // Function to update the countdown each second
+    function updateCountdown() {
+      document.getElementById("countdown").innerText = countdownTime;
+      if (countdownTime > 0) {
+        countdownTime -= 1;
+      } else {
+        // Redirect to the dashboard when the countdown reaches 0
+        window.location.href = "{{ url_for('dashboard', email=email) }}";
+      }
+    }
+
+    // Start the countdown timer
+    setInterval(updateCountdown, 1000);
+  </script>
+</head>
+<body>
+  <div class="status-container">
+    <div class="message-box">
+      <h2>{{ message }}</h2>
+      <p>You will be redirected to the dashboard in <span id="countdown">5</span> seconds...</p>
+      <p>If you are not redirected, <a href="{{ url_for('dashboard', email=email) }}">click here</a> to go to the dashboard.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeLink - Register</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Create an Account</h2>
+    <form action="{{ url_for('register') }}" method="POST">
+      <!-- Full Name Input -->
+      <input type="text" name="fullname" placeholder="Full Name" required>
+      
+      <!-- Email Input -->
+      <input type="email" name="email" placeholder="Email" required>
+      
+      <!-- Password Input -->
+      <input type="password" name="password" placeholder="Password" required>
+      
+      <!-- Role Dropdown -->
+      <select name="role" id="role" required>
+        <option value="">Select Role</option>
+        <option value="donor">Donor</option>
+        <option value="admin">Admin</option>
+        <option value="manager">Manager</option>
+      </select>
+      
+      <!-- Blood Type Dropdown -->
+      <select name="blood_type" id="blood_type" required>
+        <option value="">Select Blood Type</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+      </select>
+      
+      <!-- Pincode Input -->
+      <input type="number" name="pincode" placeholder="Pincode" required min="0" pattern="\d{6}" title="Please enter a valid 6-digit pincode">
+
+      <!-- Submit Button -->
+      <button type="submit">Register</button>
+    </form>
+
+    <p style="text-align: center; margin-top: 20px;">
+      Already have an account? <a href="{{ url_for('login') }}">Login here</a>.
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeLink - Home</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to LifeLink</h1>
+    <p>Your one-stop platform for connecting blood donors and recipients. Join us to help save lives!</p>
+    <div style="text-align: center;">
+      <a href="{{ url_for('register') }}" class="btn">Register</a>
+      <a href="{{ url_for('login') }}" class="btn">Login</a>
+    </div>
+  </div>
+  <div class="footer">
+    &copy; 2023 LifeLink. All rights reserved.
+  </div>
+</body>
+</html>

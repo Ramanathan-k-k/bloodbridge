@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Inventory - LifeLink</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      width: 45%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+
+    /* Styling for sign-out button in top right corner */
+    .sign-out-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 8px 12px;
+      color: rgb(0, 0, 0);
+      text-align: center;
+      border: none;
+      text-decoration: none;
+      font-size: 14px;
+      outline: none;
+    }
+
+    /* Pseudo-element for underline effect */
+    .sign-out-button::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      text-decoration: none;
+      background-color: #ff0000;
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+
+    /* Animate the underline from center outward on hover */
+    .sign-out-button:hover::after {
+      text-decoration: none;
+      width: 100%;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sign Out Button in the top right corner -->
+  <a href="{{ url_for('login') }}" class="sign-out-button">Sign Out</a>
+
+  <div class="container">
+    <!-- Card for displaying current inventory -->
+    <div class="card" id="inventory-display">
+      <h2>Current Inventory</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Blood Type</th>
+            <th>Units Available</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in inventory %}
+          <tr>
+            <td>{{ item.blood_type }}</td>
+            <td>{{ item.units }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Card for updating inventory -->
+    <div class="card" id="inventory-update">
+      <h2>Update Blood Inventory</h2>
+      <form action="{{ url_for('inventory') }}" method="POST">
+        <label for="blood_type">Blood Type:</label>
+        <select id="blood_type" name="blood_type" required>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+        </select>
+
+        <label for="units">Units Available:</label>
+        <input type="number" id="units" name="units" placeholder="Enter units" required min="0">
+
+        <button type="submit">Update Inventory</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

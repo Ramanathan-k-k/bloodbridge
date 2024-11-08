@@ -1,0 +1,288 @@
+.main-container {
+  max-width: 1200px; /* Set a maximum width for the container */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px; /* Add padding around the container */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack elements vertically */
+  height: fit-content;
+}
+
+.content {
+  height: 60vh;
+}
+/* Main dashboard container */
+.dashboard-container {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Left-side container for information and notifications */
+.left-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Right-side container for main content (events or inventory) */
+.right-side {
+  flex: 1;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 70vh;
+}
+
+/* Section headers */
+.right-side h2,
+.header-left h1,
+.info-card h3,
+.notif-card h3,
+.notifications-card h3 {
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+/* Scrollable event list */
+.event-list {
+  overflow-y: scroll;
+  max-height: 60vh;
+  padding-right: 10px;
+}
+
+.notif-list {
+  overflow-y: auto;
+  max-height: 35vh;
+  padding-right: 10px;
+}
+
+/* Card styling for events, information, and notifications */
+.event-card {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.info-card {
+  background-color: #ffffff;
+  font-size: large;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notif-card {
+  background-color: #ffffff;
+  font-size: large;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-details h3 {
+  margin: 0;
+}
+
+.event-details p,
+.notifications-card li {
+  color: #555;
+  margin: 5px 0;
+}
+
+/* Button styling for LifeLink */
+.title-button {
+  position: relative;
+  padding: 10px 15px;
+  font-size: 1.7em;
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: #000000;
+  border-radius: 5px;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+/* Button styling for tabs and donations */
+.tab-button {
+  position: relative;
+  padding: 10px 15px;
+  font-size: 1em;
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+/* Pseudo-element for underline effect */
+.tab-button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #ff0000;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+/* Animate the underline from center outward on hover */
+.tab-button:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Donate button within the event card */
+.donate-button {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.donate-button:hover {
+  background-color: #0056b3;
+}
+
+/* Header styling */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.header-left {
+  font-size: 1.5em;
+}
+
+.header-right {
+  display: flex;
+  gap: 10px;
+  height: 5vh;
+}
+
+/* Notifications list styling */
+.notifications-card ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  border: 2px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+
+/* Container for Notifications/Alerts */
+.notif-box {
+  width: 100%;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  overflow-y: auto;
+  max-height: 300px; /* Adjust height to control scroll area */
+}
+
+/* Header for Notifications/Alerts */
+.notif-box h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* Notification Card */
+.notifications-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+}
+
+.notifications-card h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #d9534f; /* Red color to emphasize alerts */
+}
+
+.notifications-card p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Ensuring smooth scrolling for overflow */
+.notif-box {
+  scroll-behavior: smooth;
+}
+
+.schedule-card {
+  background-color: #ffffff;
+  font-size: large;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-card label {
+  margin-bottom: 5px;
+}
+
+.schedule-card input[type="text"] {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.schedule-card button {
+  padding: 10px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.schedule-card button:hover {
+  background-color: #004494;
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Confirmation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='reg_styles.css') }}">
+    
+    <!-- Redirect to the login page after 5 seconds -->
+    <meta http-equiv="refresh" content="5;url={{ url_for('login') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="request-card">
+            <h1>Registration Successful!</h1>
+            <p>Thank you, {{ user.full_name }}, for registering with LifeLink!</p>
+            <p>We're grateful for your interest in helping our community and making a difference. Your willingness to donate can save lives!</p>
+            <p>You can now login with your Email : {{ user.email }}</p>
+            <p>You will be redirected to the login page shortly. If not, <a href="{{ url_for('login') }}">click here</a> to proceed.</p>
+        </div>
+    </div>
+</body>
+</html>

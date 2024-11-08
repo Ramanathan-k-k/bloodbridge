@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Submitted - LifeLink</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script>
+    // Redirect to the index page after 5 seconds
+    setTimeout(function() {
+      window.location.href = "{{ url_for('index') }}";
+    }, 5000);
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Request Submitted Successfully</h2>
+    <p>Your blood request has been successfully submitted. You will be redirected to the home page in <span id="countdown">5</span> seconds.</p>
+    <p>If you are not redirected, <a href="{{ url_for('index') }}">click here</a> to go to the home page.</p>
+  </div>
+  <script>
+    // Countdown timer for display purposes
+    let countdownElement = document.getElementById("countdown");
+    let countdown = 5;
+    setInterval(function() {
+      countdown -= 1;
+      if (countdownElement) {
+        countdownElement.textContent = countdown;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard - LifeLink</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+<div class="main-container">
+  <header class="dashboard-header">
+    <div class="header-left">
+      <button class="title-button">LifeLink</button>
+    </div>
+    <div class="header-right">
+      <form method="POST" action="{{ url_for('dashboard') }}">
+        <input type="hidden" name="email" value="{{ user.email }}"> 
+        <button type="submit" name="view" value="events" class="tab-button">Upcoming Events</button>
+        <button type="submit" name="view" value="inventory" class="tab-button">Inventory</button>
+      </form>
+        <!-- Sign Out Button -->
+        <a href="{{ url_for('login') }}" class="tab-button">Sign Out</a>
+      </div>
+  </header>
+  
+  <div class="dashboard-container">
+    <!-- Left Side with Information and Notifications Cards -->
+    <div class="left-side">
+      <!-- Information Card -->
+      <div class="info-card">
+        <h3>{{ user.full_name }}</h3>
+        {% if scheduled_events %}
+            <p>You are scheduled for the following event:</p>
+            <ul>
+                <li><strong>Event Name :</strong> {{ scheduled_events[1] }}</li>
+                <li><strong>Event Date :</strong> {{ scheduled_events[2] }}</li>
+                <li><strong>Venue :</strong> {{ scheduled_events[3] }}</li>
+            </ul>
+        {% else %}
+            <p>You have no upcoming scheduled events, {{ user.email }}.</p>
+        {% endif %}
+    </div>
+    
+    <!-- Notifications/Alerts Box -->
+    <div class="notif-card">
+      <h3>Alerts</h3>
+      <div class="notif-list">
+        {% if alerts %}
+          {% for alert in alerts %}
+            <div class="notifications-card">
+              <h4>Request ID: {{ alert.request_id }}</h4>
+              <p>{{ alert.quantity }} blood units needed in your area.</p>
+              <p><strong>Urgency:</strong> {{ alert.urgency | capitalize }}</p>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>No alerts in your area at this time.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+    <!-- Right Side with Tabs and Content -->
+    <div class="right-side">
+      <!-- Content for Upcoming Events or Inventory -->
+      <div class="content">
+        {% if view == 'events' %}
+          <h2>Upcoming Events</h2>
+          <div class="event-list">
+            {% for event in events %}
+            <div class="event-card">
+              <div class="event-details">
+                <h3>{{ event.name }}</h3>
+                <p><strong>Id:</strong> {{ event.event_id }}</p>
+                <p><strong>Date:</strong> {{ event.date }}</p>
+                <p><strong>Venue:</strong> {{ event.place }}</p>
+              </div>
+              <form id="schedule-form-{{ event.event_id }}" method="POST" action="{{ url_for('schedule_event') }}">
+                <input type="hidden" name="email" value="{{ user.email }}">
+                <input type="hidden" name="event_id" value="{{ event.event_id }}">
+                <input type="hidden" name="scheduled_date" value="{{ event.date }}">
+                <button type="submit" class="donate-button">Schedule</button>
+            </form>
+            </div>
+            {% endfor %}
+          </div>
+        {% elif view == 'inventory' %}
+          <h2>Inventory Status</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Blood Type</th>
+                <th>Units Available</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in inventory %}
+              <tr>
+                <td>{{ item.blood_type }}</td>
+                <td>{{ item.units }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+        <h2>Upcoming Events</h2>
+        <div class="event-list">
+          {% for event in events %}
+          <div class="event-card">
+            <div class="event-details">
+              <h3>{{ event.name }}</h3>
+              <p><strong>Id :</strong> {{ event.event_id }}</p>
+              <p><strong>Date :</strong> {{ event.date }}</p>
+              <p><strong>Venue :</strong> {{ event.place }}</p>
+            </div>
+            <form id="schedule-form-{{ event.event_id }}" method="POST" action="{{ url_for('schedule_event') }}">
+              <input type="hidden" name="email" value="{{ user.email }}">
+              <input type="hidden" name="event_id" value="{{ event.event_id }}">
+              <input type="hidden" name="scheduled_date" value="{{ event.date }}">
+              <button type="submit" class="donate-button">Schedule</button>
+          </form>
+          </div>
+          {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
